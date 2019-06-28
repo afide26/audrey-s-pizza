@@ -72,24 +72,35 @@ const DialogBannerName = styled(FoodLabel)`
   top: 90px;
 `;
 
-const FoodDialog = ({ openFood, setOpenFood }) => {
+const FoodDialog = ({ openFood, setOpenFood, setOrders, orders }) => {
   function close() {
     setOpenFood();
   }
-  return openFood ? (
-    <>
-      <DialogShadow onClick={close} />
-      <Dialog onClick={close}>
-        <DialogBanner img={openFood.img}>
-          <DialogBannerName>{openFood.name}</DialogBannerName>
-        </DialogBanner>
-        <DialogContent>{openFood.name}</DialogContent>
-        <DialogFooter>
-          <ConfirmButton>Confirm</ConfirmButton>
-        </DialogFooter>
-      </Dialog>
-    </>
-  ) : null;
+  if (!openFood) return null;
+
+  const order = {
+    name: openFood.name
+  };
+  function addToOrder() {
+    setOrders([...orders, order]);
+    close();
+  }
+  return (
+    openFood && (
+      <>
+        <DialogShadow onClick={close} />
+        <Dialog onClick={close}>
+          <DialogBanner img={openFood.img}>
+            <DialogBannerName>{openFood.name}</DialogBannerName>
+          </DialogBanner>
+          <DialogContent>{openFood.name}</DialogContent>
+          <DialogFooter>
+            <ConfirmButton onClick={addToOrder}>Confirm</ConfirmButton>
+          </DialogFooter>
+        </Dialog>
+      </>
+    )
+  );
 };
 
 export default FoodDialog;

@@ -28,10 +28,16 @@ const OrderContent = styled(DialogContent)`
   justify-content: space-between;
 `;
 
-const Order = () => {
+const Order = ({ orders }) => {
   return (
     <OrderStyled>
-      <OrderContent>Your order is looking pretty empty.</OrderContent>
+      {orders.length === 0 ? (
+        <OrderContent>Your order is looking pretty empty.</OrderContent>
+      ) : (
+        <OrderContent>
+          Found {orders.length} {orders.length > 1 ? "orders" : "order"}
+        </OrderContent>
+      )}
       <DialogFooter>
         <ConfirmButton>Checkout Here!</ConfirmButton>
       </DialogFooter>
