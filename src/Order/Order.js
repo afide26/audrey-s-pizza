@@ -21,9 +21,11 @@ const OrderStyled = styled.div`
 `;
 
 const OrderContent = styled(DialogContent)`
-  padding: 20px;
-  height: 84%;
+  height: 88%;
   text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 `;
 
 const Order = () => {
