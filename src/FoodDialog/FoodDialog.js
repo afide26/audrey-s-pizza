@@ -1,5 +1,5 @@
 import React from "react";
-import styled, { css } from "styled-components";
+import styled, { css } from "styled-components/macro";
 import { FoodLabel } from "../Menu/FoodGrid";
 import { pizzaRed } from "../Styles/colors";
 import { formatPrice } from "../Data/FoodData";
@@ -36,7 +36,7 @@ export const ConfirmButton = styled.button`
   background-color: ${pizzaRed};
   display: block;
   margin: 10px auto;
-  width: 200px;
+  min-width: 200px;
   font-size: 1rem;
   font-family: "Roboto", sans-serif;
   color: white;

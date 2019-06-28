@@ -1,5 +1,5 @@
 import React from "react";
-import styled from "styled-components";
+import styled from "styled-components/macro";
 import { foods } from "../Data/FoodData";
 import { Food, FoodGrid, FoodLabel } from "./FoodGrid";
 import { pizzaRed } from "../Styles/colors";
