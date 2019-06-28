@@ -42,4 +42,11 @@ export const FoodLabel = styled(InlineTitle)
   background-color: rgba(244, 67, 54, 0.8);
   letter-spacing: 2px;
   text-transform:none;
+
+  & > span{
+    color:#fff;
+    font-family:"Roboto", sans-serif;
+    font-size:1.25rem;
+    margin-left:25px;
+  }
 `;

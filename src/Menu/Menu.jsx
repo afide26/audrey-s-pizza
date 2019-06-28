@@ -3,6 +3,7 @@ import styled from "styled-components";
 import { foods } from "../Data/FoodData";
 import { Food, FoodGrid, FoodLabel } from "./FoodGrid";
 import { pizzaRed } from "../Styles/colors";
+import { formatPrice } from "../Data/FoodData";
 
 const MenuStyled = styled.div`
   margin: 0 400px 50px 20px;
@@ -29,13 +30,16 @@ const Menu = ({ setOpenFood }) => {
         <>
           <StyledCategory>{category}</StyledCategory>
           <FoodGrid key={foods}>
-            {foods.map(foodAndDrink => (
+            {foods.map(food => (
               <Food
-                key={foodAndDrink.name}
-                onClick={() => setOpenFood(foodAndDrink)}
-                img={foodAndDrink.img}
+                key={food.name}
+                onClick={() => setOpenFood(food)}
+                img={food.img}
               >
-                <FoodLabel>{foodAndDrink.name}</FoodLabel>
+                <FoodLabel>
+                  {food.name}
+                  <span aria-label="price">{formatPrice(food.price)}</span>
+                </FoodLabel>
               </Food>
             ))}
           </FoodGrid>

@@ -2,6 +2,7 @@ import React from "react";
 import styled, { css } from "styled-components";
 import { FoodLabel } from "../Menu/FoodGrid";
 import { pizzaRed } from "../Styles/colors";
+import { formatPrice } from "../Data/FoodData";
 
 const Dialog = styled.div`
   position: fixed;
@@ -58,8 +59,11 @@ const DialogShadow = styled.div`
 const DialogBanner = styled.div`
   min-height: 200px;
   margin-bottom: 20px;
-  ${({ img }) => `background-image: url(${img});`}
-  background-size:cover;
+  background: ${({ img }) => `
+  url('${img}');
+  `};
+
+  background-size: cover;
   background-position: center;
 `;
 
@@ -79,8 +83,9 @@ const FoodDialog = ({ openFood, setOpenFood, setOrders, orders }) => {
   if (!openFood) return null;
 
   const order = {
-    name: openFood.name
+    ...openFood
   };
+
   function addToOrder() {
     setOrders([...orders, order]);
     close();
@@ -91,11 +96,13 @@ const FoodDialog = ({ openFood, setOpenFood, setOrders, orders }) => {
         <DialogShadow onClick={close} />
         <Dialog onClick={close}>
           <DialogBanner img={openFood.img}>
-            <DialogBannerName>{openFood.name}</DialogBannerName>
+            <DialogBannerName> {openFood.name} </DialogBannerName>
           </DialogBanner>
-          <DialogContent>{openFood.name}</DialogContent>
+          <DialogContent> {openFood.name} </DialogContent>
           <DialogFooter>
-            <ConfirmButton onClick={addToOrder}>Confirm</ConfirmButton>
+            <ConfirmButton onClick={addToOrder}>
+              Add to Order: {formatPrice(openFood.price)}
+            </ConfirmButton>
           </DialogFooter>
         </Dialog>
       </>

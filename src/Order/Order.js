@@ -1,6 +1,7 @@
 import React from "react";
 import styled, { css } from "styled-components";
 import { primaryGrey } from "../Styles/colors";
+import { formatPrice } from "../Data/FoodData";
 import {
   DialogFooter,
   ConfirmButton,
@@ -41,6 +42,9 @@ const OrderContainer = styled.div`
 `;
 const OrderItem = styled.div`
   padding: 10px 0;
+  display: grid;
+  grid-template-columns: 20px 150px 20px 60px;
+  justify-content: space-between;
   ${props =>
     props.children &&
     css`
@@ -49,6 +53,7 @@ const OrderItem = styled.div`
     `}
 `;
 const Order = ({ orders }) => {
+  console.log("Orders", orders);
   return (
     <OrderStyled>
       {orders.length === 0 ? (
@@ -60,7 +65,12 @@ const Order = ({ orders }) => {
           </OrderContainer>
           {orders.map(order => (
             <OrderContainer>
-              <OrderItem>{order.name}</OrderItem>
+              <OrderItem key={order.name}>
+                <div>1</div>
+                <div>{order.name}</div>
+                <div />
+                <div>{formatPrice(order.price)}</div>
+              </OrderItem>
             </OrderContainer>
           ))}
         </OrderContent>
