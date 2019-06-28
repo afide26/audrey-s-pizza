@@ -12,19 +12,25 @@ export const FoodGrid = styled.div `
 export const Food = styled(InlineTitle)
 `
   box-shadow: 0px 0px 2px 0px grey;
+  transition-property: box-shadow margin-top filter;
+  transition-duration: .1s;
   height: 150px;
   padding: 10px;
   border-radius: 7px;
   font-size: 25px;
+  margin-top:5px;
+  filter: contrast(75%);
   background: ${({ img }) => `
 url('${img}');
 `};
   background-size: cover;
   background-position: center;
-  filter: contast(75%);
   &:hover {
     cursor: pointer;
-    opacity: 0.7;
+    filter: contrast(100%);
+    box-shadow: 0px 5px 10px 1px grey;
+    margin-top:0px;
+    margin-bottom:5px;
   }
 `;
 
