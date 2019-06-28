@@ -22,7 +22,7 @@ const StyledCategory = styled.h2`
   font-family: "Kaushan Script", cursive;
 `;
 
-const Menu = () => {
+const Menu = ({ setOpenFood }) => {
   return (
     <MenuStyled>
       <StyledGreeting>Audrey's House Favourites</StyledGreeting>
@@ -31,7 +31,11 @@ const Menu = () => {
           <StyledCategory>{category}</StyledCategory>
           <FoodGrid key={foods}>
             {foods.map(foodAndDrink => (
-              <Food key={foodAndDrink.name} img={foodAndDrink.img}>
+              <Food
+                key={foodAndDrink.name}
+                onClick={() => setOpenFood(foodAndDrink)}
+                img={foodAndDrink.img}
+              >
                 <FoodLabel>{foodAndDrink.name}</FoodLabel>
               </Food>
             ))}

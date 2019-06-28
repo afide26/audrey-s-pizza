@@ -9,8 +9,7 @@ export const FoodGrid = styled.div `
   grid-template-columns: 1fr 1fr;
 `;
 
-export const Food = styled(InlineTitle)
-`
+export const Food = styled.div `
   box-shadow: 0px 0px 2px 0px grey;
   transition-property: box-shadow margin-top filter;
   transition-duration: .1s;
@@ -34,11 +33,13 @@ url('${img}');
   }
 `;
 
-export const FoodLabel = styled.div `
+export const FoodLabel = styled(InlineTitle)
+` top:0;
+  left:0;
+  border-top-left-radius:5px;
   position: absolute;
-  padding: 5px;
-  background-color: rgba(244, 67, 54, 0.7);
+  padding: .25rem 1rem;
+  background-color: rgba(244, 67, 54, 0.8);
   letter-spacing: 2px;
   text-transform:none;
-  border-radius: 5px;
 `;
