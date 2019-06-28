@@ -29,7 +29,7 @@ const Menu = () => {
       {Object.entries(foods).map(([category, foods]) => (
         <>
           <StyledCategory>{category}</StyledCategory>
-          <FoodGrid>
+          <FoodGrid key={foods}>
             {foods.map(foodAndDrink => (
               <Food key={foodAndDrink.name} img={foodAndDrink.img}>
                 <FoodLabel>{foodAndDrink.name}</FoodLabel>
