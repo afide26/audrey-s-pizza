@@ -7,7 +7,6 @@ import { pizzaRed } from "../Styles/colors";
 const MenuStyled = styled.div`
   margin: 0 400px 50px 20px;
   color: ${pizzaRed};
-  height: 1000px;
 `;
 
 const StyledGreeting = styled.h1`

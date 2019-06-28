@@ -1,6 +1,6 @@
 import React from "react";
-import styled from "styled-components";
-
+import styled, { css } from "styled-components";
+import { primaryGrey } from "../Styles/colors";
 import {
   DialogFooter,
   ConfirmButton,
@@ -25,9 +25,29 @@ const OrderContent = styled(DialogContent)`
   text-align: center;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: flex-start;
 `;
 
+const OrderContainer = styled.div`
+  padding: 10px 0;
+  border-bottom: 1px solid ${primaryGrey};
+  width: 95%;
+  margin: 0 auto;
+  ${props =>
+    props.children &&
+    css`
+      color: ${primaryGrey};
+    `}
+`;
+const OrderItem = styled.div`
+  padding: 10px 0;
+  ${props =>
+    props.children &&
+    css`
+      color: ${primaryGrey};
+      text-align: left;
+    `}
+`;
 const Order = ({ orders }) => {
   return (
     <OrderStyled>
@@ -35,7 +55,14 @@ const Order = ({ orders }) => {
         <OrderContent>Your order is looking pretty empty.</OrderContent>
       ) : (
         <OrderContent>
-          Found {orders.length} {orders.length > 1 ? "orders" : "order"}
+          <OrderContainer>
+            Found {orders.length} {orders.length > 1 ? "orders" : "order"}
+          </OrderContainer>
+          {orders.map(order => (
+            <OrderContainer>
+              <OrderItem>{order.name}</OrderItem>
+            </OrderContainer>
+          ))}
         </OrderContent>
       )}
       <DialogFooter>
