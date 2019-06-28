@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { pizzaRed } from "../Styles/colors";
-import { Title } from "../Styles/title";
+import { InlineTitle } from "../Styles/inlinetitle";
 
 export const NavbarStyled = styled.div`
   background-color: ${pizzaRed};
@@ -11,8 +11,9 @@ export const NavbarStyled = styled.div`
   z-index: 9999;
 `;
 
-const Logo = styled(Title)`
+const Logo = styled(InlineTitle)`
   font-size: 20px;
+  letter-spacing: 2px;
   color: #fff;
   text-shadow: 1px 1px 3px #58585a;
 `;
