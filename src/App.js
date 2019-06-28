@@ -8,10 +8,11 @@ import Order from "./Order/Order";
 // Hooks
 import { useOpenFood } from "./Hooks/useOpenFood";
 import { useOrders } from "./Hooks/useOrders";
-
+import { useTitle } from "./Hooks/useTitle";
 function App() {
   const openFood = useOpenFood();
   const orders = useOrders();
+  useTitle({ ...openFood, ...orders });
   return (
     <>
       <GlobalStyle />
