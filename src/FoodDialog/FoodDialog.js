@@ -1,15 +1,48 @@
 import React from "react";
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 import { FoodLabel } from "../Menu/FoodGrid";
+import { pizzaRed } from "../Styles/colors";
+
 const Dialog = styled.div`
   position: fixed;
   background-color: white;
   width: 500px;
-  height: 2000px;
   top: 75px;
   z-index: 5;
   max-height: calc(100%-100px) !important;
   left: calc(50% - 250px) !important;
+  display: flex;
+  flex-direction: column;
+`;
+
+export const DialogContent = styled.div`
+  overflow: auto;
+  min-height: 100px;
+  ${props =>
+    props.children &&
+    css`
+      color: ${pizzaRed};
+      font-size: 1rem;
+      margin: 5px;
+    `}
+`;
+export const DialogFooter = styled.div`
+  box-shadow: 0px -2px 10px 0px #58585a;
+  height: 60px;
+`;
+
+export const ConfirmButton = styled.button`
+  background-color: ${pizzaRed};
+  display: block;
+  margin: 10px auto;
+  width: 200px;
+  font-size: 1rem;
+  font-family: "Roboto", sans-serif;
+  color: white;
+  letter-spacing: 2px;
+  padding: 10px;
+  cursor: pointer;
+  text-align: center;
 `;
 
 const DialogShadow = styled.div`
@@ -50,6 +83,10 @@ const FoodDialog = ({ openFood, setOpenFood }) => {
         <DialogBanner img={openFood.img}>
           <DialogBannerName>{openFood.name}</DialogBannerName>
         </DialogBanner>
+        <DialogContent>{openFood.name}</DialogContent>
+        <DialogFooter>
+          <ConfirmButton>Confirm</ConfirmButton>
+        </DialogFooter>
       </Dialog>
     </>
   ) : null;
