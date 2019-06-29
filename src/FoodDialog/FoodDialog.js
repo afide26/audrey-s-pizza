@@ -95,8 +95,14 @@ const StyledSpan = styled.span`
   background: ${pizzaRed};
 `;
 
+const pricePerTopping = 0.5;
+
 export function getPrice(order) {
-  return order.price * order.quantity;
+  return (
+    order.quantity *
+    (order.price +
+      order.toppings.filter(t => t.checked).length * pricePerTopping)
+  );
 }
 
 function hasToppings(food) {

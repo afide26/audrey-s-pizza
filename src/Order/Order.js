@@ -53,6 +53,12 @@ const OrderItem = styled.div`
       text-align: left;
     `}
 `;
+
+const DetailItem = styled.div`
+  color: #58585a;
+  font-size: 10px;
+  text-align: left;
+`;
 const Order = ({ orders }) => {
   const subTotal = orders.reduce((total, order) => {
     return total + getPrice(order);
@@ -76,6 +82,13 @@ const Order = ({ orders }) => {
                 <div />
                 <div>{formatPrice(getPrice(order))}</div>
               </OrderItem>
+              <DetailItem>
+                {order.toppings && <p>Your extra toppings are:</p>}
+                {order.toppings
+                  .filter(t => t.checked)
+                  .map(topping => topping.name)
+                  .join(", ")}
+              </DetailItem>
             </OrderContainer>
           ))}
           <OrderContainer>
