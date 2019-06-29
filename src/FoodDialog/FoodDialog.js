@@ -1,6 +1,8 @@
 import React from "react";
 import styled, { css } from "styled-components/macro";
 import { FoodLabel } from "../Menu/FoodGrid";
+import QuantityInput from "./QuantityInput";
+import { useQuantity } from "../Hooks/useQuantity";
 import { pizzaRed } from "../Styles/colors";
 import { formatPrice } from "../Data/FoodData";
 
@@ -19,6 +21,7 @@ const Dialog = styled.div`
 export const DialogContent = styled.div`
   overflow: auto;
   min-height: 100px;
+  padding: 20px;
   ${props =>
     props.children &&
     css`
@@ -76,7 +79,22 @@ const DialogBannerName = styled(FoodLabel)`
   top: 90px;
 `;
 
+const StyledSpan = styled.span`
+  display: block;
+  width: 25px;
+  margin-left: auto;
+  color: white;
+  font-size: 1.5rem;
+  font-weight: 900;
+  cursor: pointer;
+  outline: none;
+  padding: 0.3rem;
+  text-align: center;
+  background: ${pizzaRed};
+`;
+
 const FoodDialogContainer = ({ openFood, setOpenFood, setOrders, orders }) => {
+  const quantity = useQuantity(openFood && openFood.quantity);
   function close() {
     setOpenFood();
   }
@@ -95,9 +113,12 @@ const FoodDialogContainer = ({ openFood, setOpenFood, setOrders, orders }) => {
         <DialogShadow onClick={close} />
         <Dialog onClick={close}>
           <DialogBanner img={openFood.img}>
+            <StyledSpan onClick={close}>&times;</StyledSpan>
             <DialogBannerName> {openFood.name} </DialogBannerName>
           </DialogBanner>
-          <DialogContent> {openFood.name} </DialogContent>
+          <DialogContent>
+            <QuantityInput quantity={quantity} />
+          </DialogContent>
           <DialogFooter>
             <ConfirmButton onClick={addToOrder}>
               Add to Order: {formatPrice(openFood.price)}
