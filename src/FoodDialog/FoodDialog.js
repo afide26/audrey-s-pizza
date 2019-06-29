@@ -3,8 +3,10 @@ import styled, { css } from "styled-components/macro";
 import { FoodLabel } from "../Menu/FoodGrid";
 import QuantityInput from "./QuantityInput";
 import { useQuantity } from "../Hooks/useQuantity";
+import { useToppings } from "../Hooks/useToppings";
 import { pizzaRed } from "../Styles/colors";
 import { formatPrice } from "../Data/FoodData";
+import Toppings from "./Toppings";
 
 const Dialog = styled.div`
   position: fixed;
@@ -96,16 +98,21 @@ const StyledSpan = styled.span`
 export function getPrice(order) {
   return order.price * order.quantity;
 }
+
+function hasToppings(food) {
+  return food.category === "Pizza";
+}
 const FoodDialogContainer = ({ openFood, setOpenFood, setOrders, orders }) => {
   const quantity = useQuantity(openFood && openFood.quantity);
-
+  const toppings = useToppings(openFood.toppings);
   function close(e) {
     setOpenFood();
   }
 
   const order = {
     ...openFood,
-    quantity: quantity.value
+    quantity: quantity.value,
+    toppings: toppings.toppings
   };
 
   function addToOrder() {
@@ -123,6 +130,12 @@ const FoodDialogContainer = ({ openFood, setOpenFood, setOrders, orders }) => {
           </DialogBanner>
           <DialogContent>
             <QuantityInput quantity={quantity} />
+            {hasToppings(openFood) && (
+              <>
+                <h3>Choose additional toppings:</h3>
+                <Toppings {...toppings} />
+              </>
+            )}
           </DialogContent>
           <DialogFooter>
             <ConfirmButton onClick={addToOrder}>
