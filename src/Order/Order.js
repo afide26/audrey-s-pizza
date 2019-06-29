@@ -40,6 +40,15 @@ const OrderContainer = styled.div`
     css`
       color: ${primaryGrey};
     `}
+  ${({ editable }) =>
+    editable &&
+    `
+    cursor:pointer;
+    
+    &:hover{
+      background-color:#e7e7e7;
+    }
+  `}
 `;
 const OrderItem = styled.div`
   padding: 10px 0;
@@ -59,12 +68,19 @@ const DetailItem = styled.div`
   font-size: 10px;
   text-align: left;
 `;
-const Order = ({ orders, openFood }) => {
+const Order = ({ orders, setOrders, setOpenFood }) => {
   const subTotal = orders.reduce((total, order) => {
     return total + getPrice(order);
   }, 0);
   const VAT = subTotal * 0.1;
   const total = subTotal + VAT;
+
+  const deleteItem = index => {
+    const newOrders = [...orders];
+    newOrders.splice(index, 1);
+    setOrders(newOrders);
+  };
+
   return (
     <OrderStyled>
       {orders.length === 0 ? (
@@ -78,13 +94,27 @@ const Order = ({ orders, openFood }) => {
           <OrderContainer>
             Found {orders.length} {orders.length > 1 ? "orders" : "order"}
           </OrderContainer>
-          {orders.map((order, i) => (
-            <OrderContainer key={i}>
-              <OrderItem>
+          {orders.map((order, index) => (
+            <OrderContainer key={index} editable>
+              <OrderItem
+                onClick={() => {
+                  setOpenFood({ ...order, index });
+                }}
+              >
                 <div>{order.quantity}</div>
                 <div>{order.name}</div>
-                <div />
                 <div>{formatPrice(getPrice(order))}</div>
+                <div
+                  style={{ cursor: "pointer", marginLeft: "25px" }}
+                  onClick={e => {
+                    e.stopPropagation();
+                    deleteItem(index);
+                  }}
+                >
+                  <span role="img" aria-label="delete">
+                    🗑️
+                  </span>
+                </div>
               </OrderItem>
               <DetailItem>
                 {order.toppings &&
@@ -100,24 +130,24 @@ const Order = ({ orders, openFood }) => {
             <OrderItem>
               <div />
               <div>Subtotal:</div>
-              <div />
               <div>{formatPrice(subTotal)}</div>
+              <div />
             </OrderItem>
           </OrderContainer>
           <OrderContainer>
             <OrderItem>
               <div />
               <div>VAT:</div>
-              <div />
               <div>{formatPrice(VAT)}</div>
+              <div />
             </OrderItem>
           </OrderContainer>
           <OrderContainer>
             <OrderItem>
               <div />
               <div>Total:</div>
-              <div />
               <div>{formatPrice(total)}</div>
+              <div />
             </OrderItem>
           </OrderContainer>
         </OrderContent>
