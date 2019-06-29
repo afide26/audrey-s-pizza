@@ -27,16 +27,26 @@
 <body>
   <noscript>You need to enable JavaScript to run this app.</noscript>
   <div id="root"></div>
-  <!--
-      This HTML file is a template.
-      If you open it directly in the browser, you will see an empty page.
+  <!-- The core Firebase JS SDK is always required and must be listed first -->
+  <script src="https://www.gstatic.com/firebasejs/6.2.4/firebase-app.js"></script>
 
-      You can add webfonts, meta tags, or analytics to this file.
-      The build step will place the bundled scripts into the <body> tag.
+  <!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#config-web-app -->
 
-      To begin the development, run `npm start` or `yarn start`.
-      To create a production bundle, use `npm run build` or `yarn build`.
-    -->
+  <script>
+    // Your web app's Firebase configuration
+    var firebaseConfig = {
+      apiKey: "AIzaSyA75FemSX6VW5ERtl8lSS_ZYCLnsMH-tMk",
+      authDomain: "audrey-s-pizza.firebaseapp.com",
+      databaseURL: "https://audrey-s-pizza.firebaseio.com",
+      projectId: "audrey-s-pizza",
+      storageBucket: "",
+      messagingSenderId: "551350404523",
+      appId: "1:551350404523:web:58e8be5019f80a1c"
+    };
+    // Initialize Firebase
+    firebase.initializeApp(firebaseConfig);
+  </script>
 </body>
 
 </html>
