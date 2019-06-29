@@ -1,7 +1,7 @@
 import React from "react";
 import { GlobalStyle } from "./Styles/GlobalStyle";
 import { Banner } from "./Banner/Banner";
-import FoodDialog from "./FoodDialog/FoodDialog";
+import { FoodDialog } from "./FoodDialog/FoodDialog";
 import Navbar from "./Navbar/Navbar";
 import Menu from "./Menu/Menu";
 import Order from "./Order/Order";

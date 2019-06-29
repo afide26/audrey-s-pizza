@@ -76,11 +76,10 @@ const DialogBannerName = styled(FoodLabel)`
   top: 90px;
 `;
 
-const FoodDialog = ({ openFood, setOpenFood, setOrders, orders }) => {
+const FoodDialogContainer = ({ openFood, setOpenFood, setOrders, orders }) => {
   function close() {
     setOpenFood();
   }
-  if (!openFood) return null;
 
   const order = {
     ...openFood
@@ -110,4 +109,7 @@ const FoodDialog = ({ openFood, setOpenFood, setOrders, orders }) => {
   );
 };
 
-export default FoodDialog;
+export function FoodDialog(props) {
+  if (!props.openFood) return null;
+  return <FoodDialogContainer {...props} />;
+}
