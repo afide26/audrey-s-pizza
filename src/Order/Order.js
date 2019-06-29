@@ -2,6 +2,7 @@ import React from "react";
 import styled, { css } from "styled-components/macro";
 import { primaryGrey } from "../Styles/colors";
 import { formatPrice } from "../Data/FoodData";
+import { getPrice } from "../FoodDialog/FoodDialog";
 import {
   DialogFooter,
   ConfirmButton,
@@ -22,7 +23,7 @@ const OrderStyled = styled.div`
 `;
 
 const OrderContent = styled(DialogContent)`
-  height: 88%;
+  height: 85%;
   text-align: center;
   display: flex;
   flex-direction: column;
@@ -66,10 +67,10 @@ const Order = ({ orders }) => {
           {orders.map(order => (
             <OrderContainer>
               <OrderItem key={order.name}>
-                <div>1</div>
+                <div>{order.quantity}</div>
                 <div>{order.name}</div>
                 <div />
-                <div>{formatPrice(order.price)}</div>
+                <div>{formatPrice(getPrice(order))}</div>
               </OrderItem>
             </OrderContainer>
           ))}

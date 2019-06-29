@@ -7,7 +7,11 @@ export function useQuantity(defaultQuantity) {
 
   function onChange(e) {
     console.log(e.target.value);
-    setValue(e.target.value)
+    if (!(+e.target.value >= 1)) {
+      setValue(1);
+      return;
+    }
+    setValue(+e.target.value)
   }
 
   return {

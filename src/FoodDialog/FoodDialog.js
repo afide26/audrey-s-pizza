@@ -93,14 +93,19 @@ const StyledSpan = styled.span`
   background: ${pizzaRed};
 `;
 
+export function getPrice(order) {
+  return order.price * order.quantity;
+}
 const FoodDialogContainer = ({ openFood, setOpenFood, setOrders, orders }) => {
   const quantity = useQuantity(openFood && openFood.quantity);
-  function close() {
+
+  function close(e) {
     setOpenFood();
   }
 
   const order = {
-    ...openFood
+    ...openFood,
+    quantity: quantity.value
   };
 
   function addToOrder() {
@@ -111,7 +116,7 @@ const FoodDialogContainer = ({ openFood, setOpenFood, setOrders, orders }) => {
     openFood && (
       <>
         <DialogShadow onClick={close} />
-        <Dialog onClick={close}>
+        <Dialog>
           <DialogBanner img={openFood.img}>
             <StyledSpan onClick={close}>&times;</StyledSpan>
             <DialogBannerName> {openFood.name} </DialogBannerName>
@@ -121,7 +126,7 @@ const FoodDialogContainer = ({ openFood, setOpenFood, setOrders, orders }) => {
           </DialogContent>
           <DialogFooter>
             <ConfirmButton onClick={addToOrder}>
-              Add to Order: {formatPrice(openFood.price)}
+              Add to Order: {formatPrice(getPrice(order))}
             </ConfirmButton>
           </DialogFooter>
         </Dialog>
