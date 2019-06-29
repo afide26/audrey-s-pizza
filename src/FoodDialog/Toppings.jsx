@@ -17,9 +17,9 @@ const Toppings = ({ toppings, checkTopping }) => {
   return (
     <ToppingGrid>
       {toppings.map((topping, index) => (
-        <CheckboxLabel>
+        <CheckboxLabel key={index}>
           <ToppingCheckBox
-            onClick={() => checkTopping(index)}
+            onChange={() => checkTopping(index)}
             type="checkbox"
             checked={topping.checked}
           />

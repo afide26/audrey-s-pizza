@@ -59,7 +59,7 @@ const DetailItem = styled.div`
   font-size: 10px;
   text-align: left;
 `;
-const Order = ({ orders }) => {
+const Order = ({ orders, openFood }) => {
   const subTotal = orders.reduce((total, order) => {
     return total + getPrice(order);
   }, 0);
@@ -79,15 +79,14 @@ const Order = ({ orders }) => {
             Found {orders.length} {orders.length > 1 ? "orders" : "order"}
           </OrderContainer>
           {orders.map(order => (
-            <OrderContainer>
-              <OrderItem key={order.name}>
+            <OrderContainer key={order.name}>
+              <OrderItem>
                 <div>{order.quantity}</div>
                 <div>{order.name}</div>
                 <div />
                 <div>{formatPrice(getPrice(order))}</div>
               </OrderItem>
               <DetailItem>
-                {order.toppings && <p>Toppings:</p>}
                 {order.toppings
                   .filter(t => t.checked)
                   .map(topping => topping.name)
