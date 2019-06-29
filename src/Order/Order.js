@@ -68,7 +68,11 @@ const Order = ({ orders }) => {
   return (
     <OrderStyled>
       {orders.length === 0 ? (
-        <OrderContent>Your order is looking pretty empty.</OrderContent>
+        <OrderContent>
+          <h3 style={{ fontFamily: "'Kaushan Script', cursive" }}>
+            Choose from one of Audrey's House Favorites
+          </h3>
+        </OrderContent>
       ) : (
         <OrderContent>
           <OrderContainer>
@@ -83,7 +87,7 @@ const Order = ({ orders }) => {
                 <div>{formatPrice(getPrice(order))}</div>
               </OrderItem>
               <DetailItem>
-                {order.toppings && <p>Your extra toppings are:</p>}
+                {order.toppings && <p>Toppings:</p>}
                 {order.toppings
                   .filter(t => t.checked)
                   .map(topping => topping.name)

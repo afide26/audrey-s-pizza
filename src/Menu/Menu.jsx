@@ -26,10 +26,10 @@ const Menu = ({ setOpenFood }) => {
   return (
     <MenuStyled>
       <StyledGreeting>Audrey's House Favourites</StyledGreeting>
-      {Object.entries(foods).map(([category, foods]) => (
-        <>
+      {Object.entries(foods).map(([category, foods], index) => (
+        <React.Fragment key={index}>
           <StyledCategory>{category}</StyledCategory>
-          <FoodGrid key={foods}>
+          <FoodGrid>
             {foods.map(food => (
               <Food
                 key={food.name}
@@ -43,7 +43,7 @@ const Menu = ({ setOpenFood }) => {
               </Food>
             ))}
           </FoodGrid>
-        </>
+        </React.Fragment>
       ))}
     </MenuStyled>
   );
