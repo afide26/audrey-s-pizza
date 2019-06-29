@@ -78,8 +78,8 @@ const Order = ({ orders, openFood }) => {
           <OrderContainer>
             Found {orders.length} {orders.length > 1 ? "orders" : "order"}
           </OrderContainer>
-          {orders.map(order => (
-            <OrderContainer key={order.name}>
+          {orders.map((order, i) => (
+            <OrderContainer key={i}>
               <OrderItem>
                 <div>{order.quantity}</div>
                 <div>{order.name}</div>
@@ -87,11 +87,13 @@ const Order = ({ orders, openFood }) => {
                 <div>{formatPrice(getPrice(order))}</div>
               </OrderItem>
               <DetailItem>
-                {order.toppings
-                  .filter(t => t.checked)
-                  .map(topping => topping.name)
-                  .join(", ")}
+                {order.toppings &&
+                  order.toppings
+                    .filter(t => t.checked)
+                    .map(topping => topping.name)
+                    .join(", ")}
               </DetailItem>
+              {order.choice && <DetailItem>{order.choice}</DetailItem>}
             </OrderContainer>
           ))}
           <OrderContainer>
