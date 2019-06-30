@@ -41,14 +41,14 @@ const OrderContainer = styled.div`
       color: ${primaryGrey};
     `}
   ${({ editable }) =>
-    editable
-      ? `
+    editable &&
+    `
     cursor:pointer;
     
     &:hover{
       background-color:#e7e7e7;
-    }`
-      : `pointer-events:none;`}
+    }
+  `}
 `;
 const OrderItem = styled.div`
   padding: 10px 0;
