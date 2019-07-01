@@ -129,9 +129,9 @@ const FoodDialogContainer = ({ openFood, setOpenFood, setOrders, orders }) => {
     choice: choiceRadio.value
   };
 
-  function editOrder(order) {
+  function editOrder() {
     const newOrders = [...orders];
-    newOrders[order.index] = order;
+    newOrders[openFood.index] = order;
     setOrders(newOrders);
     close();
   }

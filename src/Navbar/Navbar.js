@@ -7,8 +7,12 @@ export const NavbarStyled = styled.div`
   background-color: ${pizzaRed};
   padding: 10px;
   position: fixed;
+  top: 0;
   width: 100%;
   z-index: 9999;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 `;
 
 const Logo = styled(InlineTitle)`
@@ -18,15 +22,46 @@ const Logo = styled(InlineTitle)`
   text-shadow: 1px 1px 3px #58585a;
 `;
 
-export default function Navbar() {
+const UserStatus = styled.div`
+  margin-right: 30px;
+  font-size: 14px;
+  color: #fff;
+`;
+
+const LoginButton = styled.span`
+  cursor: pointer;
+`;
+
+export default function Navbar({ login, loggedIn, logout }) {
   return (
     <NavbarStyled>
       <Logo>
-        Audrey's Pizza{" "}
+        Audrey's Pizza
         <span role="img" aria-label="pizza">
           🍕🍕🍕
         </span>
       </Logo>
+      <UserStatus>
+        {loggedIn === "loading" ? (
+          "Loading..."
+        ) : (
+          <>
+            <span
+              style={{ cursor: "pointer", marginRight: "10px" }}
+              aria-label="loggedIn"
+              role="img"
+              onClick={logout}
+            >
+              😋
+            </span>
+            {loggedIn ? (
+              <LoginButton onClick={logout}>Log out</LoginButton>
+            ) : (
+              <LoginButton onClick={login}>Log in / Sign up</LoginButton>
+            )}
+          </>
+        )}
+      </UserStatus>
     </NavbarStyled>
   );
 }

@@ -11,7 +11,7 @@ import {
 
 const OrderStyled = styled.div`
   height: calc(100vh - 10px) !important;
-  width: 340px;
+  width: 340px !important;
   top: 48px;
   box-shadow: 4px 0px 5px 4px #58585a;
   background-color: white;
@@ -68,7 +68,7 @@ const DetailItem = styled.div`
   font-size: 10px;
   text-align: left;
 `;
-const Order = ({ orders, setOrders, setOpenFood }) => {
+const Order = ({ orders, setOrders, setOpenFood, login, loggedIn }) => {
   const subTotal = orders.reduce((total, order) => {
     return total + getPrice(order);
   }, 0);
@@ -154,7 +154,17 @@ const Order = ({ orders, setOrders, setOpenFood }) => {
       )}
 
       <DialogFooter>
-        <ConfirmButton>Checkout Here!</ConfirmButton>
+        <ConfirmButton
+          onClick={() => {
+            if (loggedIn) {
+              console.log("Logged In");
+            } else {
+              login();
+            }
+          }}
+        >
+          Checkout Here!
+        </ConfirmButton>
       </DialogFooter>
     </OrderStyled>
   );
