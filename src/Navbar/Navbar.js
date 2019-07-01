@@ -31,7 +31,10 @@ const UserStatus = styled.div`
 const LoginButton = styled.span`
   cursor: pointer;
 `;
-
+const firstName = function(name) {
+  const fullName = name.split(" ");
+  return fullName[0];
+};
 export default function Navbar({ login, loggedIn, logout }) {
   return (
     <NavbarStyled>
@@ -52,7 +55,7 @@ export default function Navbar({ login, loggedIn, logout }) {
               role="img"
               onClick={logout}
             >
-              😋
+              😋 {loggedIn ? `Hello ${firstName(loggedIn.displayName)}` : null}
             </span>
             {loggedIn ? (
               <LoginButton onClick={logout}>Log out</LoginButton>
