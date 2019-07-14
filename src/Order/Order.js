@@ -68,7 +68,14 @@ const DetailItem = styled.div`
   font-size: 10px;
   text-align: left;
 `;
-const Order = ({ orders, setOrders, setOpenFood, login, loggedIn }) => {
+const Order = ({
+  orders,
+  setOrders,
+  setOpenFood,
+  login,
+  loggedIn,
+  setOpenOrderDialog
+}) => {
   const subTotal = orders.reduce((total, order) => {
     return total + getPrice(order);
   }, 0);
@@ -157,6 +164,7 @@ const Order = ({ orders, setOrders, setOpenFood, login, loggedIn }) => {
         <ConfirmButton
           onClick={() => {
             if (loggedIn) {
+              setOpenOrderDialog(true);
               console.log("Logged In");
             } else {
               login();

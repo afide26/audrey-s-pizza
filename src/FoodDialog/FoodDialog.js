@@ -10,12 +10,12 @@ import Toppings from "./Toppings";
 import { useChoice } from "../Hooks/useChoice";
 import Choices from "./Choices";
 
-const Dialog = styled.div`
+export const Dialog = styled.div`
   position: fixed;
   background-color: white;
   width: 500px;
   top: 75px;
-  z-index: 5;
+  z-index: 11;
   max-height: calc(100%-100px) !important;
   left: calc(50% - 250px) !important;
   display: flex;
@@ -55,14 +55,14 @@ export const ConfirmButton = styled.button`
     disabled && `opacity:0.75; background-color:#58585a; pointer-events:none`}
 `;
 
-const DialogShadow = styled.div`
+export const DialogShadow = styled.div`
   position: fixed;
   top: 0;
   width: 100vw;
   height: 100vh;
   background-color: #000;
   opacity: 0.7;
-  z-index: 4;
+  z-index: 10;
 `;
 
 const DialogBanner = styled.div`
