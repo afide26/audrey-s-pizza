@@ -12,7 +12,7 @@ const foodsAndDrinks = [{
     price: 24.50
   },
   {
-    name: 'Margeherita',
+    name: 'Margherita',
     img: '/img/margherita.jpg',
     category: 'Pizza',
     price: 20.00
