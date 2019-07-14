@@ -22,7 +22,7 @@ function App() {
   return (
     <>
       <GlobalStyle />
-      <OrderDialog {...OrderDialog} {...orders} />
+      <OrderDialog {...orderDialog} {...orders} {...openFood} />
       <Navbar {...auth} />
       <FoodDialog {...openFood} {...orders} />
       <Order {...auth} {...orders} {...openFood} {...orderDialog} />

@@ -144,7 +144,7 @@ const Order = ({
                 <div>{order.name}</div>
                 <div>{formatPrice(getPrice(order))}</div>
                 <div
-                  style={{ cursor: "pointer", marginLeft: "25px" }}
+                  style={{ cursor: "pointer", marginLeft: "30px" }}
                   onClick={e => {
                     e.stopPropagation();
                     deleteItem(index);
@@ -192,20 +192,22 @@ const Order = ({
         </OrderContent>
       )}
 
-      <DialogFooter>
-        <ConfirmButton
-          onClick={() => {
-            if (loggedIn) {
-              setOpenOrderDialog(true);
-              sendOrder(orders, loggedIn);
-            } else {
-              login();
-            }
-          }}
-        >
-          Checkout Here!
-        </ConfirmButton>
-      </DialogFooter>
+      {orders.length > 0 && (
+        <DialogFooter>
+          <ConfirmButton
+            onClick={() => {
+              if (loggedIn) {
+                sendOrder(orders, loggedIn);
+                setOpenOrderDialog(true);
+              } else {
+                login();
+              }
+            }}
+          >
+            Checkout Here!
+          </ConfirmButton>
+        </DialogFooter>
+      )}
     </OrderStyled>
   );
 };

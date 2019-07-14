@@ -15,7 +15,8 @@ export const Dialog = styled.div`
   background-color: white;
   width: 500px;
   top: 75px;
-  z-index: 11;
+  opacity: 1;
+  z-index: 20;
   max-height: calc(100%-100px) !important;
   left: calc(50% - 250px) !important;
   display: flex;
