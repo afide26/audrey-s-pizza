@@ -9,6 +9,8 @@ import {
   DialogContent
 } from "../FoodDialog/FoodDialog";
 
+const database = window.firebase.database();
+
 const OrderStyled = styled.div`
   height: calc(100vh - 10px) !important;
   width: 340px !important;
@@ -68,6 +70,36 @@ const DetailItem = styled.div`
   font-size: 10px;
   text-align: left;
 `;
+
+function sendOrder(orders, { email, displayName }) {
+  const newOrderRef = database.ref("orders").push();
+  const newOrders = orders.map(order => {
+    return Object.keys(order).reduce((acc, orderKey) => {
+      if (!order[orderKey]) {
+        //undefined value
+        return acc;
+      }
+
+      if (orderKey === "toppings") {
+        return {
+          ...acc,
+          [orderKey]: order[orderKey]
+            .filter(({ checked }) => checked)
+            .map(({ name }) => name)
+        };
+      }
+      return {
+        ...acc,
+        [orderKey]: order[orderKey]
+      };
+    }, {});
+  });
+  newOrderRef.set({
+    order: newOrders,
+    email,
+    displayName
+  });
+}
 const Order = ({
   orders,
   setOrders,
@@ -165,7 +197,7 @@ const Order = ({
           onClick={() => {
             if (loggedIn) {
               setOpenOrderDialog(true);
-              console.log("Logged In");
+              sendOrder(orders, loggedIn);
             } else {
               login();
             }
